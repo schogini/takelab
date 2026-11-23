@@ -79,8 +79,8 @@ class TerminalTests(unittest.TestCase):
     def test_resize_and_ctrl_c_interrupt_foreground_job(self):
         session = self.start()
         self.request('resize', {'id': session['id'], 'cols': 67, 'rows': 19})
-        self.write(session, b'stty size\n')
-        self.wait_for(session, b'\r\n19 67\r\n')
+        self.write(session, b'printf "\\nSIZE="; stty size\n')
+        self.wait_for(session, b'\r\nSIZE=19 67\r\n')
         command = shlex.quote(sys.executable) + ' -c ' + shlex.quote('import time; print("JOB_READY", flush=True); time.sleep(30)') + '\n'
         self.write(session, command.encode())
         self.wait_for(session, b'\r\nJOB_READY\r\n')
