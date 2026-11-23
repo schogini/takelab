@@ -1,0 +1,172 @@
+/* Tabs lead directly into one recording stage; actions live in an overlay menu. */
+:root{--recording-toolbar-height:40px;--recording-details-height:56px;--recording-padding:16px;--recording-footer-height:28px}
+#preview-pane{min-height:0;align-self:stretch;background:#fbfaf7}
+#preview-pane>.pane-heading{flex:0 0 38px;height:38px;min-height:38px;max-height:38px;flex-wrap:nowrap;overflow:hidden}
+.file-tabs{flex-wrap:nowrap;max-height:32px}
+#reference-toolbar{flex:0 0 var(--recording-toolbar-height);height:var(--recording-toolbar-height);min-height:var(--recording-toolbar-height);border-bottom:1px solid var(--line);background:#fbfaf7;overflow:hidden}
+#file-tools,.terminal-tools{display:flex;align-items:center;gap:6px;flex-wrap:nowrap;white-space:nowrap;height:100%;min-height:0;padding:5px var(--recording-padding);overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;border:0;background:transparent;color:#71806b}
+#file-tools{justify-content:flex-end}
+#file-tools>*,.terminal-tools>*{flex-shrink:0}
+#file-tools button,#file-tools a,.terminal-tools button{font:10px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:14px;padding:5px 8px;color:#42513d;border:1px solid #d1dac9;border-radius:5px;text-decoration:none;background:transparent}
+#file-tools button:hover,#file-tools a:hover,.terminal-tools button:hover{background:#e4e9dc}
+#reference-details{flex:0 0 var(--recording-details-height);height:var(--recording-details-height);min-height:var(--recording-details-height);background:#fbfaf7;border-bottom:1px solid var(--line);overflow:hidden}
+#file-details,.terminal-location{display:flex;align-items:center;gap:12px;height:100%;min-height:0;overflow:hidden;padding:8px var(--recording-padding);border:0;flex:none;color:#71806b}
+#file-details>div{min-width:0;flex:1}
+#reference-kind{display:block;font-size:8px;line-height:12px;letter-spacing:1px;color:#86917f;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#reference-name{display:block;font:16px/22px Georgia,serif;color:#28352f;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#reference-meta{font-size:9px;max-width:40%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.terminal-location>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+#reference-stage{display:flex;flex:1 1 0;min-height:0;min-width:0;margin:var(--recording-padding);padding:var(--recording-safe-inset,var(--view-inner-spacing,24px));overflow:hidden}
+#file-panels,#terminal-panel{flex:1 1 0;min-height:0;min-width:0}
+#terminal-host{padding:0;margin:0;flex:1 1 0;min-height:0}
+.terminal-footer{flex:0 0 var(--recording-footer-height);height:var(--recording-footer-height);flex-wrap:nowrap;align-items:center;white-space:nowrap;overflow:hidden;padding:0 8px;gap:12px}
+.terminal-footer>span:first-child{flex:1;min-width:0}
+.terminal-footer>span:last-child{overflow:hidden;text-overflow:ellipsis;min-width:0}
+/* Embedded previews contain content only; their chrome lives in the outer header. */
+body.embedded .toolbar,body.embedded .file-heading{display:none!important}
+body.embedded #preview{display:flex;flex-direction:column;flex:1 1 0;min-height:0;overflow:hidden;padding:0}
+body.embedded #content{flex:1 1 0;min-height:0;width:100%;max-width:none;margin:0;padding:0;overflow:auto}
+body.embedded #content.code-preview{border:0;border-radius:0}
+body.embedded #content.code-preview pre{padding:0;margin:0}
+body.embedded #content.markdown>:first-child{margin-top:0}
+body.embedded #content.image-preview{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+body.embedded #content.image-preview img{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;object-position:center;flex-shrink:0;box-shadow:none;border-radius:0}
+body.embedded #content.image-preview .image-dimensions{display:none}
+body.embedded .main-footer{display:none}
+/* Workspace palette is passed to embedded previews when they become ready. */
+body.embedded.workspace-colors{background:var(--workspace-background);color:var(--workspace-foreground)}
+body.embedded.workspace-colors #content.markdown,body.embedded.workspace-colors #content.markdown h1,body.embedded.workspace-colors #content.markdown h2,body.embedded.workspace-colors #content.markdown h3,body.embedded.workspace-colors #content.markdown h4{color:var(--workspace-foreground)}
+body.embedded.workspace-colors #content.markdown a{color:var(--workspace-accent)}
+body.embedded.workspace-colors #content.markdown :not(pre)>code,body.embedded.workspace-colors #content.markdown th,body.embedded.workspace-colors #content.markdown blockquote{background:var(--workspace-control)}
+body.embedded.workspace-colors #content.markdown blockquote{color:var(--workspace-muted)}
+body.embedded.workspace-colors .main-footer{background:var(--workspace-background);color:var(--workspace-muted)}
+body.embedded.workspace-colors .welcome>p:not(.eyebrow),body.embedded.workspace-colors .supported{color:var(--workspace-muted)}
+
+#reference-menu-toggle{flex-shrink:0;min-width:28px;height:26px;font-size:20px;line-height:20px;padding:0 7px!important;border:1px solid var(--line);border-radius:5px}
+#reference-menu{position:fixed;inset:96px 16px auto auto;margin:0;width:290px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 112px);overflow:auto;padding:18px;border:1px solid var(--workspace-line,var(--line));border-radius:10px;background:var(--workspace-background,#fbfaf7);color:var(--workspace-foreground,#28352f);box-shadow:0 12px 45px #0003;font:12px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+#reference-menu>header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px}
+#reference-menu h2{font-size:16px;line-height:22px;font-weight:600;margin:0}
+#reference-menu>header button{font-size:22px;padding:0 5px;color:var(--workspace-muted,#71806b)}
+#reference-menu #reference-toolbar,#reference-menu #reference-details{height:auto;min-height:0;flex:none;overflow:visible;border:0;background:transparent}
+#reference-menu #reference-details{margin-top:16px}
+#reference-menu #file-tools{height:auto;min-height:0;flex-direction:column;align-items:stretch;padding:0;gap:7px;overflow:visible}
+#reference-menu #file-tools button,#reference-menu #file-tools a,#reference-menu .terminal-tools button{font-size:12px;line-height:18px;padding:7px 10px;text-align:left}
+#reference-menu .terminal-tools{height:auto;min-height:0;padding:0;gap:7px;flex-wrap:wrap;overflow:visible}
+#reference-menu #terminal-status{flex-basis:100%;margin:0 0 3px;font-size:10px}
+#reference-menu #terminal-start{flex-basis:100%}
+#reference-menu .terminal-tools button{flex:1}
+#reference-menu #file-details{height:auto;padding:0;display:flex;flex-direction:column;align-items:flex-start;gap:5px}
+#reference-menu #reference-name{font-size:14px;max-width:250px}
+#reference-menu #reference-meta{max-width:100%;font-size:10px}
+#reference-menu .terminal-location{height:auto;min-height:0;display:block;padding:0;font-size:10px}
+#reference-menu .terminal-location>span{display:block}
+#reference-menu>footer{display:flex;justify-content:flex-end;margin-top:16px;padding-top:12px;border-top:1px solid var(--line)}
+#reference-menu>footer button{font-size:11px;border:1px solid var(--line);border-radius:5px;padding:7px 12px}
+/* A fixed ratio changes only the recording stage's bottom/right edges. */
+#recording-ratio{flex-shrink:0;max-width:82px;height:26px;padding:3px 5px;border:1px solid var(--workspace-line,var(--line));border-radius:5px;background:var(--workspace-control,#f6f6ee);color:var(--workspace-foreground,#28352f);font:10px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;cursor:pointer}
+#recording-ratio:focus-visible{outline:2px solid var(--workspace-accent,#789359);outline-offset:-2px}
+#preview-pane.recording-ratio-locked::after{display:none}
+.recording-ratio-locked #reference-stage{position:relative;flex:0 0 auto;align-self:flex-start;border-radius:var(--view-border-radius,10px)}
+.recording-ratio-locked #reference-stage::after{content:'';position:absolute;inset:0;border:var(--view-border-width,2px) solid var(--view-border-color,#6b8354);border-radius:inherit;pointer-events:none;z-index:20}
+/* Recording controls stay above/outside the captured browse frame. */
+#recording-toggle{color:#a3382c;border-color:#b8614b!important}
+#recording-quick-controls{display:flex;align-items:center;gap:4px;color:#9c3629}
+#recording-clock{font:10px ui-monospace,monospace;font-variant-numeric:tabular-nums;min-width:58px}
+.app-header #recording-quick-controls button{padding:4px 6px;min-width:25px}
+.recording-session-active .header-hint{display:none}
+.recording-session-active #recording-toggle{background:#a3382c;color:#fff}
+.recording-is-paused #recording-toggle{background:#8d6c2d}
+#recording-panel{position:fixed;inset:58px auto auto 16px;margin:0;width:400px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 74px);overflow:auto;box-sizing:border-box;border:1px solid var(--workspace-line,var(--line));border-radius:12px;padding:20px;background:var(--workspace-background,#f9f8f3);color:var(--workspace-foreground,#28352f);box-shadow:0 15px 65px #0003;font:12px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+#recording-panel>header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+#recording-panel>header p{font-size:8px;letter-spacing:1.5px;color:var(--workspace-muted);margin:0 0 6px}
+#recording-panel h2{margin:0;font:25px Georgia,serif}
+#recording-panel>header>button{font-size:22px;padding:0 5px;color:inherit}
+.recorder-help{font-size:10px;line-height:1.75;color:var(--workspace-muted);margin:12px 0}
+#recording-options{border:0;border-top:1px solid var(--line);padding:4px 0 0;margin:16px 0}
+#recording-options:disabled{opacity:.55}
+#recording-panel label:not(.recorder-check){display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:11px;margin:12px 0}
+#recording-panel select{font:inherit;font-size:11px;color:inherit;background:var(--workspace-control);border:1px solid var(--line);border-radius:5px;padding:6px;max-width:225px}
+#recording-panel button:not(header button),#recording-download{display:inline-block;border:1px solid var(--line);border-radius:5px;padding:7px 10px;font-size:10px;color:inherit;text-decoration:none}
+#recording-panel button:disabled{opacity:.45;cursor:default}
+.recorder-check{display:block;font-size:11px;margin:16px 0}
+.recorder-check input{accent-color:var(--workspace-accent,#6b8354)}
+.recorder-actions{display:flex;flex-wrap:wrap;gap:7px}
+#recording-panel #recording-start{background:#a3382c;color:#fff;border-color:#a3382c}
+#recording-status{font-size:11px;line-height:1.7;white-space:pre-wrap}
+#recording-meter{width:170px;height:14px}
+.recorded-takes{border-top:1px solid var(--line);margin-top:18px;padding-top:5px}
+.recorded-takes h3{font-size:12px;margin:14px 0}
+#recording-playback{display:block;width:100%;max-height:220px;background:#111815;border-radius:6px;margin:12px 0}
+#recording-takes{max-width:290px!important;min-width:0;width:100%}
+#recording-download{background:var(--workspace-control)}
+@media(max-width:1000px){.recording-session-active #reset-layout{display:none}.recording-session-active .app-header strong span{display:none}}
+
+/* Reading text wraps within its inset viewport; wide code/tables keep their own scrolling. */
+body.embedded #content.markdown{min-width:0;overflow-wrap:anywhere}
+body.embedded #content.markdown :is(h1,h2,h3,h4,h5,h6){max-width:100%;white-space:normal;overflow-wrap:anywhere}
+body.embedded #content.markdown pre{max-width:100%}
+
+body.embedded #content.html-preview{height:auto;min-height:0;overflow:hidden}#html-view-modes{display:flex;align-items:center;gap:2px;flex-shrink:0;border:1px solid var(--workspace-line,var(--line));border-radius:5px;padding:1px}#html-view-modes button{font-size:10px;padding:3px 6px;border:0;border-radius:3px}#html-view-modes button[aria-pressed=true]{background:var(--workspace-selected,#e0e7d7);color:var(--workspace-foreground,#28352f)}
+
+/* Prominent state HUD stays in the existing 52 px header, outside the capture. */
+.recording-session-active{--recording-state-color:#a0252c}
+body[data-recording-state=paused]{--recording-state-color:#8b4d00}
+body[data-recording-state=starting],body[data-recording-state=stopping]{--recording-state-color:#355273}
+.recording-session-active .app-header{box-shadow:inset 0 -3px var(--recording-state-color)}
+.recording-session-active #recording-quick-controls{height:40px;gap:8px;padding:4px 8px;border:2px solid var(--recording-state-color);border-radius:8px;background:var(--recording-state-color);color:#fff;box-shadow:0 2px 8px #0002;flex-shrink:0}
+.recording-state-display{display:flex;align-items:center;gap:6px;white-space:nowrap}
+#recording-state-label{font-size:12px;font-weight:800;letter-spacing:1px}
+#recording-state-icon{display:inline-block;width:17px;text-align:center;font-size:18px;font-weight:800;line-height:22px}
+#recording-clock{font:700 17px ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums;min-width:89px;padding-left:8px;border-left:1px solid #ffffff70;color:inherit}
+.app-header #recording-quick-controls button{font-size:11px;font-weight:650;border:1px solid #ffffff70;background:#ffffff18;color:#fff;padding:5px 8px;white-space:nowrap}
+.app-header #recording-quick-controls button:hover{background:#ffffff35;color:#fff}
+.app-header #recording-quick-controls #recording-stop{background:#fff;color:var(--recording-state-color);border-color:#fff;font-weight:800}
+.app-header #recording-quick-controls #recording-mute[aria-pressed=true]{background:#fff0ad;color:#522d00;border-color:#fff0ad}
+.app-header #recording-quick-controls button:disabled{opacity:.45;cursor:default}
+.recording-session-active #recording-toggle{background:var(--workspace-control,#f6f6ee);color:var(--workspace-foreground,#28352f)}
+body[data-recording-state=recording] #recording-state-icon{animation:recording-status-pulse 1.6s ease-in-out infinite}
+@keyframes recording-status-pulse{0%,100%{opacity:1}50%{opacity:.45}}
+@media(prefers-reduced-motion:reduce){body[data-recording-state=recording] #recording-state-icon{animation:none}}
+@media(max-width:1000px){.recording-session-active .app-header>strong{display:none}.recording-session-active .header-actions{margin-left:0}}
+@media(max-width:860px){.recording-session-active #appearance-toggle{display:none}}
+
+/* Fixed toolbar geometry and internally scrolling controls. */
+.app-header{flex:0 0 var(--workspace-header-height,52px);height:var(--workspace-header-height,52px);min-height:var(--workspace-header-height,52px);max-height:var(--workspace-header-height,52px);min-width:0;width:100%;overflow:hidden}
+.app-header .header-actions{flex-shrink:1;min-width:0;max-width:100%;height:100%;overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+.app-header .header-actions::-webkit-scrollbar{display:none}
+.app-header .header-actions>*{flex-shrink:0}
+.terminal-host{flex:1;min-height:0;min-width:0;overflow:hidden;padding:0;margin:0}.terminal-host .xterm{height:100%}#new-terminal-tab{flex-shrink:0;font-size:11px;white-space:nowrap}
+#terminal-paste-clipboard,#terminal-paste-toggle,#terminal-typing-stop{flex-shrink:0;font-size:10px;white-space:nowrap}#terminal-typing-stop{color:#a3382c;border:1px solid currentColor;border-radius:5px}
+#terminal-typing-panel{position:fixed;inset:96px 16px auto auto;margin:0;width:380px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 112px);overflow:auto;box-sizing:border-box;padding:18px;border:1px solid var(--workspace-line,var(--line));border-radius:12px;background:var(--workspace-background,#f9f8f3);color:var(--workspace-foreground,#28352f);box-shadow:0 15px 65px #0003;font:12px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+#terminal-typing-panel header{display:flex;align-items:center;justify-content:space-between;gap:10px}#terminal-typing-panel h2{font-size:17px;margin:0}#terminal-typing-panel header button{font-size:22px}#terminal-typing-panel label{display:block;margin:14px 0}#terminal-typing-panel textarea{display:block;width:100%;box-sizing:border-box;resize:vertical;margin-top:6px;padding:8px;font:12px/1.6 ui-monospace,monospace;color:inherit;background:var(--workspace-control);border:1px solid var(--workspace-line);border-radius:6px}#terminal-typing-panel select{color:inherit;background:var(--workspace-control);padding:5px;border:1px solid var(--workspace-line);border-radius:5px}#terminal-typing-panel>button{padding:7px 10px;border:1px solid var(--workspace-line);border-radius:5px}#terminal-typing-panel p{font-size:10px;color:var(--workspace-muted)}
+#file-edit{flex-shrink:0;padding:4px 8px;font-size:10px;border:1px solid var(--workspace-line,var(--line));border-radius:5px}
+#file-editor{display:flex;flex:1 1 0;min-height:0;min-width:0;flex-direction:column;padding:12px;gap:8px;background:var(--paper);color:var(--ink)}#file-editor>header{display:flex;align-items:center;justify-content:space-between;gap:10px}#editor-name{font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}#file-editor header>div{display:flex;gap:6px;flex-shrink:0}#file-editor button{font-size:11px;padding:6px 10px;border:1px solid var(--line);border-radius:5px}#editor-save{background:var(--green);color:var(--paper)}#editor-save:disabled{opacity:.5}#editor-status{font-size:11px;line-height:1.5;margin:0;color:var(--muted);overflow-wrap:anywhere}#editor-text{flex:1;min-height:0;resize:none;box-sizing:border-box;width:100%;padding:12px;background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:5px;font:14px/1.7 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;tab-size:4;white-space:pre;overflow:auto}
+.web-panel{display:flex;flex:1;min-height:0;min-width:0;overflow:hidden;background:var(--workspace-background,#fbfaf7)}.web-panel iframe{width:100%;height:100%;min-height:0;border:0}.web-empty{display:flex;flex:1;flex-direction:column;justify-content:center;align-items:center;padding:24px;text-align:center;color:var(--workspace-muted,#81867e);font:12px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.web-empty h2{font:25px Georgia,serif;color:var(--workspace-foreground,#28352f)}
+#new-browser-tab,#browser-address-toggle,#browser-reload,#browser-external{flex-shrink:0;font-size:10px;white-space:nowrap}#browser-external{color:inherit;border:1px solid var(--line);border-radius:5px;padding:4px 7px;text-decoration:none}
+#browser-navigation{position:fixed;inset:96px 16px auto auto;margin:0;width:390px;max-width:calc(100vw - 24px);box-sizing:border-box;padding:18px;border:1px solid var(--workspace-line,var(--line));border-radius:12px;background:var(--workspace-background,#f9f8f3);color:var(--workspace-foreground,#28352f);box-shadow:0 15px 65px #0003;font:12px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}#browser-navigation header{display:flex;align-items:center;justify-content:space-between;gap:10px}#browser-navigation h2{font-size:17px;margin:0}#browser-navigation header button{font-size:22px}#browser-url-form label{display:block;margin:15px 0 6px}#browser-url-form>div{display:flex;gap:6px}#browser-url{flex:1;min-width:0;padding:8px;background:var(--workspace-control,#fff);color:inherit;border:1px solid var(--workspace-line,var(--line));border-radius:5px}#browser-url-form button,#browser-refresh-menu{padding:7px 10px;border:1px solid var(--workspace-line,var(--line));border-radius:5px}#browser-navigation p{font-size:10px;color:var(--workspace-muted)}
+#reference-stage{position:relative}
+#browse-annotations{position:absolute;inset:var(--recording-safe-inset,var(--view-inner-spacing,24px));z-index:30;pointer-events:none;overflow:hidden}
+#browse-annotations canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#browse-annotations[data-mode=laser] .annotation-surface,#browse-annotations[data-mode=pen] .annotation-surface,#browse-annotations[data-mode=highlighter] .annotation-surface{pointer-events:auto;touch-action:none;cursor:crosshair}
+.annotation-controls{display:flex;align-items:center;gap:3px;flex-shrink:0}.annotation-controls button{font-size:10px;white-space:nowrap}.annotation-controls button:disabled{opacity:.4}#annotation-laser{color:#ff3b30}#annotation-laser[aria-pressed=true]{background:#ff3b3022}
+#annotation-panel{position:fixed;inset:96px 16px auto auto;margin:0;width:330px;max-width:calc(100vw - 24px);padding:18px;border:1px solid var(--workspace-line,var(--line));border-radius:12px;background:var(--workspace-background,#f9f8f3);color:var(--workspace-foreground,#28352f);box-shadow:0 15px 65px #0003;font:12px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}#annotation-panel header{display:flex;align-items:center;justify-content:space-between;gap:10px}#annotation-panel h2{font-size:17px;margin:0}#annotation-panel header button{font-size:22px}.annotation-modes{display:flex;gap:5px;flex-wrap:wrap}.annotation-modes button{padding:6px 8px;border:1px solid var(--workspace-line,var(--line));border-radius:5px}.annotation-modes button[aria-pressed=true]{background:var(--workspace-selected,#e0e7d7)}#annotation-panel label{display:block;margin:14px 0}#annotation-width{width:100%}#annotation-panel p{font-size:10px;color:var(--workspace-muted)}
+.recording-viewport-compensated .app-header> :not(.header-actions){visibility:hidden}
+.recording-viewport-compensated .app-header .header-actions{overflow:visible}
+.recording-viewport-compensated .header-actions> :not(#recording-quick-controls):not(#recording-toggle):not(#prompt-settings-toggle):not(#prompt-popout){display:none}
+.recording-viewport-compensated #recording-quick-controls{position:fixed;left:12px;bottom:12px;z-index:1000;max-width:var(--recording-controls-max-width);overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+.recording-viewport-compensated #recording-quick-controls>*{flex-shrink:0}
+.recording-viewport-compensated #recording-toggle{position:fixed;left:12px;bottom:60px;z-index:1000}
+.recording-viewport-compensated #prompt-settings-toggle{position:fixed;left:100px;bottom:60px;z-index:1000}
+#recording-panel #recording-camtasia-download{display:block;width:fit-content;margin-top:8px;padding:7px 10px;border:1px solid var(--line);border-radius:5px;background:var(--workspace-control);color:inherit;font-size:10px;text-decoration:none}
+#browser-url-form .browser-app-mode{display:flex;align-items:center;gap:7px;font-size:11px;margin-top:16px}
+/* Dock the workspace toolbar below the reading and recording columns. */
+body>.app-header{order:2;border-bottom:0;border-top:1px solid var(--line)}
+body>main{order:1}
+#recording-panel{inset:auto auto 58px 16px}
+#appearance-panel,#workspace-settings-panel,#cameras-panel{inset:auto 16px 58px auto}
+/* Sharing compensation keeps the preview fixed; reading stays at viewport top. */
+.recording-viewport-compensated>.app-header{border-top:0;border-bottom:0}
+.recording-viewport-compensated>main{margin-top:calc(0px - var(--recording-offset,0px));margin-bottom:var(--recording-reclaimed-toolbar,0px)}
+.recording-viewport-compensated>main>:not(#preview-pane){transform:translateY(var(--recording-offset,0px));height:calc(100% - var(--recording-extra-offset,0px));align-self:flex-start}
+
+.recording-viewport-compensated #prompt-popout{position:fixed;left:185px;bottom:60px;z-index:1000}

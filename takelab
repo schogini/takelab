@@ -1,0 +1,10 @@
+#!/bin/bash
+# Resolve this launcher even when installed as a symlink in PATH.
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+  DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ "$SOURCE" != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+APP_DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+exec python3 "$APP_DIR/launch.py" "$@"

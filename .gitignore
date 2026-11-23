@@ -1,0 +1,24 @@
+__pycache__/
+*.pyc
+.DS_Store
+.youtube-queue/
+.venv-youtube/
+client_secrets.json
+token.json
+.env
+
+# Local developer environments and generated output
+.venv/
+venv/
+node_modules/
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+/recordings/
+/exports/
+/push.sh
+
+# Local secrets; keep only deliberately sanitized examples
+.env.*
+!.env.example

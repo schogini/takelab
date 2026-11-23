@@ -1,0 +1,37 @@
+.header-actions{margin-left:auto;display:flex;align-items:center;gap:7px;flex-shrink:0}
+.app-header .header-actions button{font-size:10px;border:1px solid var(--line);padding:6px 9px;white-space:nowrap}
+#appearance-panel{position:fixed;inset:58px 16px auto auto;margin:0;width:330px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 74px);overflow:auto;border:1px solid var(--workspace-line);border-radius:12px;padding:20px;background:var(--workspace-background);color:var(--workspace-foreground);box-shadow:0 15px 65px #0003;font:12px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+#appearance-panel header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px}
+#appearance-panel header p,.appearance-section>p{font-size:8px;letter-spacing:1.5px;margin:0 0 7px;color:var(--workspace-muted)}
+#appearance-panel h2{font:25px Georgia,serif;margin:0}
+#appearance-panel header>button{font-size:22px;color:var(--workspace-muted);padding:0 5px}
+.appearance-color-row{display:flex;align-items:center;gap:8px;font-size:11px;min-width:0}
+.appearance-color-row>span{flex:1}.appearance-color-row small{display:block;margin-top:5px;font-size:9px;color:var(--workspace-muted)}
+.appearance-color-row output{width:56px;font:10px ui-monospace,monospace;color:var(--workspace-muted)}
+.appearance-color-row input[type=color]{width:34px;height:29px;padding:2px;border:1px solid var(--workspace-line);border-radius:5px;background:transparent;cursor:pointer}
+.appearance-presets{display:flex;gap:8px;margin:15px 0 23px}
+.appearance-presets button{width:29px;height:29px;border-radius:50%;background:var(--swatch)!important;border:1px solid #89947e;box-shadow:0 0 0 3px transparent}
+.appearance-presets button[aria-pressed=true]{box-shadow:0 0 0 2px var(--workspace-foreground);border-color:var(--workspace-background)}
+.appearance-section{border-top:1px solid var(--workspace-line);padding-top:20px}.appearance-section>p{margin-bottom:16px}
+.appearance-slider{display:block;margin-top:19px;font-size:11px}.appearance-slider>span{display:block}.appearance-slider output{float:right;color:var(--workspace-muted);font-size:10px}
+.appearance-slider input{display:block;width:100%;margin:12px 0 0;accent-color:var(--workspace-accent)}
+.appearance-help{font-size:10px;line-height:1.7;color:var(--workspace-muted);margin:20px 0}
+#appearance-panel footer{display:flex;justify-content:space-between;gap:10px}#appearance-panel footer button{border:1px solid var(--workspace-line);font-size:10px;padding:8px 10px}#appearance-panel footer button:last-child{background:var(--workspace-foreground);color:var(--workspace-background)}
+/* The frame overlays the pane edge; changing its thickness never changes layout. */
+#preview-pane{position:relative;isolation:isolate;border-radius:var(--view-border-radius)}
+#preview-pane::after{content:'';position:absolute;inset:0;border:var(--view-border-width) solid var(--view-border-color);border-radius:inherit;pointer-events:none;z-index:20}
+body.workspace-colors{background:var(--workspace-background);color:var(--workspace-foreground)}
+.workspace-colors .app-header,.workspace-colors #sidebar,.workspace-colors #preview-pane,.workspace-colors #reference-toolbar,.workspace-colors #reference-details{background:var(--workspace-background);color:var(--workspace-foreground)}
+.workspace-colors #open-folder{background:var(--workspace-control);border-color:var(--workspace-line)}
+.workspace-colors .app-header strong span,.workspace-colors .header-hint,.workspace-colors #folder-path,.workspace-colors .files-label,.workspace-colors #breadcrumbs,.workspace-colors #file-count,.workspace-colors .file-row .glyph,.workspace-colors #reference-kind,.workspace-colors #reference-meta,.workspace-colors .terminal-location,.workspace-colors #terminal-status{color:var(--workspace-muted)}
+.workspace-colors #reference-name{color:var(--workspace-foreground)}
+.workspace-colors .file-row.selected,.workspace-colors button:hover,.workspace-colors .file-tab.selected,.workspace-colors .view-tabs button[aria-selected=true]{background:var(--workspace-selected);color:var(--workspace-foreground)}
+.workspace-colors .file-tab.selected{border-color:var(--workspace-line)}
+.workspace-colors .pane-heading .view-tabs button,.workspace-colors #file-tools button,.workspace-colors #file-tools a,.workspace-colors .terminal-tools button{color:var(--workspace-foreground);border-color:var(--workspace-line)}
+.workspace-colors #file-tools button:hover,.workspace-colors #file-tools a:hover,.workspace-colors .terminal-tools button:hover{background:var(--workspace-selected)}
+.workspace-colors .divider{background:var(--workspace-line)}.workspace-colors .divider:hover,.workspace-colors .divider.dragging{background:var(--workspace-accent)}
+.workspace-colors #search::placeholder{color:var(--workspace-muted)}
+#workspace-settings-panel{position:fixed;inset:58px 16px auto auto;margin:0;width:360px;max-width:calc(100vw - 24px);max-height:calc(100dvh - 74px);overflow:auto;box-sizing:border-box;border:1px solid var(--workspace-line);border-radius:12px;padding:20px;background:var(--workspace-background);color:var(--workspace-foreground);box-shadow:0 15px 65px #0003;font:12px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+#workspace-settings-panel header{display:flex;justify-content:space-between;align-items:center}#workspace-settings-panel h2{font:24px Georgia,serif;margin:0}#workspace-settings-panel header button{font-size:22px}#workspace-settings-panel label{display:block;margin-top:18px}#workspace-settings-panel input{display:block;max-width:100%;margin-top:8px}#workspace-settings-save{border:1px solid var(--workspace-line);border-radius:6px;padding:8px 12px}
+
+#appearance-panel,#workspace-settings-panel{inset:auto 16px 58px auto}

@@ -1,0 +1,13 @@
+PROJECT NOTES
+=============
+
+A simple text file, displayed in a monospace font.
+
+Status       Ready
+Files        Local
+Connection   Offline friendly
+
+Indentation and spacing stay intact:
+    one
+        two
+            three

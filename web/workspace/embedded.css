@@ -1,0 +1,33 @@
+body.embedded .app-nav,body.embedded #sidebar,body.embedded .sidebar{display:none!important}
+body.embedded #popout,body.embedded #focus,body.embedded #files-toggle{display:none!important}
+body.embedded .toolbar #breadcrumbs{display:none}
+body.embedded .toolbar{height:48px;padding:0 14px;justify-content:flex-end}
+body.embedded #preview{padding:0 20px 30px}
+body.embedded .file-heading{display:block;padding:20px 0;margin-bottom:20px}
+body.embedded .file-heading h1{font-size:25px;margin-bottom:10px}
+body.embedded .main-footer{padding:10px 14px}
+body.embedded .topbar{height:48px;padding:0 12px}
+body.embedded .topbar #script-title{display:block;font-size:11px}
+body.embedded #script{padding-left:18px;padding-right:14px;max-width:100%}
+body.embedded #reading-guide span{left:2px}
+body.embedded #settings{grid-template-columns:1fr;max-height:55vh;padding:12px}
+body.embedded .transport{padding:10px}
+body.embedded .transport-row{flex-wrap:wrap;gap:6px}
+body.embedded .transport-right{margin-left:auto;flex-wrap:wrap}
+body.embedded #play-status{display:none}
+body.embedded .transport-meta{flex-wrap:wrap;gap:6px;font-size:8px}
+body.embedded #welcome{padding:20px}
+body.embedded #welcome h1{font-size:30px}
+body.embedded #welcome>p:not(.eyebrow){font-size:12px}
+body.embedded .welcome{padding:20px}
+body.embedded .welcome h1{font-size:28px}
+@media(max-width:300px){body.embedded #settings{grid-template-columns:1fr}body.embedded .transport-right{width:100%;justify-content:flex-end}body.embedded #restart{margin-left:auto}body.embedded .play{flex:1}body.embedded #script{padding-left:15px;padding-right:10px}}
+
+/* The workspace toolbar owns teleprompter chrome; keep the script at the top. */
+body.embedded .topbar{display:none!important}
+body.embedded #script{padding-top:0}
+body.embedded #script>:first-child{margin-top:0}
+body.embedded main{position:relative}
+body.embedded #settings{position:absolute;top:0;left:0;right:0;z-index:25;box-shadow:0 8px 24px #0005}
+body.embedded .embedded-settings-header{display:flex;align-items:center;justify-content:space-between;gap:10px}
+body.embedded .embedded-settings-header button{font-size:22px;padding:0 6px}

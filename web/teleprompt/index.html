@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>TakeLab Prompt</title><link rel="stylesheet" href="/teleprompt/style.css"><script defer src="/app-nav.js"></script><script defer src="/vendor/marked.js"></script><script defer src="/vendor/purify.js"></script><script defer src="/teleprompt/popup-window.js"></script><script defer src="/teleprompt/app.js"></script><link rel="stylesheet" href="/app-nav.css"><link rel="stylesheet" href="/workspace/embedded.css"></head>
+<body>
+<aside id="sidebar">
+<header class="brand"><span class="brand-mark">T<span>•</span></span><div>TakeLab<small>YOUR WORDS. YOUR PACE.</small></div><button id="close-files" title="Hide scripts" aria-label="Hide scripts">‹</button></header>
+<button id="folder-button"><span>▱</span><span><strong id="folder-name">Loading…</strong><small id="folder-path"></small></span><span>⌄</span></button>
+<div class="search"><span>⌕</span><input id="search" type="search" placeholder="Find a script…" aria-label="Filter Markdown files"></div>
+<div class="list-label"><span>MARKDOWN SCRIPTS</span><button id="refresh" title="Refresh scripts" aria-label="Refresh scripts">↻</button></div>
+<nav id="breadcrumbs" aria-label="Folder navigation"></nav><nav id="files" aria-label="Markdown scripts"></nav>
+<footer><span class="dot"></span> LOCAL & PRIVATE <span id="file-count"></span></footer>
+</aside>
+<main>
+<nav class="app-nav" aria-label="Switch apps" data-current="teleprompt"><a data-app="files" aria-disabled="true">▧ Files</a><a data-app="teleprompt" href="/" aria-current="page">T Prompt</a></nav>
+<header class="topbar"><button id="files-toggle" title="Show or hide scripts" aria-label="Show or hide scripts">☷</button><span id="script-title">Your next good take.</span><div><button id="popout" title="Open a compact window at the top left">Pop out ↗</button><button id="settings-toggle" aria-expanded="false" aria-controls="settings">Settings</button></div></header>
+<section id="settings" hidden aria-label="Reading settings"><div class="embedded-settings-header"><strong>Reading settings</strong><button id="settings-close" type="button" aria-label="Close reading settings">×</button></div>
+<label>Text size <span><button id="font-down" aria-label="Decrease font size">A−</button><output id="font-value"></output><button id="font-up" aria-label="Increase font size">A+</button></span><input id="font" aria-label="Font size" type="range" min="16" max="96" step="1" value="36"></label>
+<label>Scroll speed <output id="speed-value"></output><input id="speed" aria-label="Scroll speed" type="range" min="5" max="160" value="35"></label>
+<label>Line spacing <output id="spacing-value"></output><input id="spacing" aria-label="Line spacing" type="range" min="1.2" max="2.6" step="0.1" value="1.7"></label>
+<label>Reading width <output id="width-value"></output><input id="width" aria-label="Reading width" type="range" min="280" max="1200" step="20" value="760"></label>
+<label>Start countdown<select id="countdown"><option value="0">Off</option><option value="3" selected>3 seconds</option><option value="5">5 seconds</option></select></label>
+<div class="toggle-settings"><label><input id="mirror" type="checkbox"> Mirror text</label><label><input id="guide" type="checkbox" checked> Reading guide</label><label><input id="light" type="checkbox"> Light theme</label></div>
+<p>Space · play / pause &nbsp; ↑ ↓ · scroll &nbsp; ← → · speed &nbsp; + − · text size &nbsp; Home · restart &nbsp; F · focus &nbsp; Esc · exit focus</p>
+</section>
+<div class="reading-area">
+<div id="reading-guide" hidden aria-hidden="true"><span>▸</span></div>
+<div id="reader" tabindex="0" aria-label="Teleprompter reading area"><section id="welcome"><div class="intro-mark">“</div><p class="eyebrow">READY WHEN YOU ARE</p><h1>Find your flow.</h1><p>Pick a Markdown script on the left.<br>Set the type. Find your pace. Make it yours.</p><span class="hint"><kbd>space</kbd> to play or pause</span></section><article id="script" hidden></article></div>
+<div id="countdown-overlay" hidden role="status" aria-live="polite"></div>
+</div>
+<footer class="transport"><div class="transport-row"><button id="play" class="play" disabled>▶ <span>Start</span></button><button id="restart" disabled title="Back to start (Home)" aria-label="Back to start">↺</button><span id="play-status" role="status">Choose a script</span><div class="transport-right"><button id="quick-down" aria-label="Smaller text">A−</button><output id="quick-font">36</output><button id="quick-up" aria-label="Larger text">A+</button><button id="focus" title="Hide sidebar and settings (F)">Focus ⛶</button></div></div><div class="floating-controls"><button id="floating-settings" type="button" aria-expanded="false" aria-controls="settings">Settings ⚙</button><button id="floating-slower" type="button" aria-label="Slower scrolling">Speed −</button><button id="floating-faster" type="button" aria-label="Faster scrolling">Speed +</button><button id="floating-narrower" type="button" aria-label="Narrower popup">W−</button><button id="floating-wider" type="button" aria-label="Wider popup">W+</button><button id="floating-top" type="button" title="Move this popup to the screen’s top usable edge">Top ↑</button><button id="floating-close" type="button">Close ×</button></div><div class="progress-track"><div id="progress"></div></div><div class="transport-meta"><span id="word-count">MARKDOWN TELEPROMPTER</span><span id="remaining">35 px/s</span></div></footer>
+</main>
+<dialog id="folder-dialog"><form id="folder-form"><p class="eyebrow">YOUR SCRIPT LIBRARY</p><h2>Open a folder</h2><p>Paste a folder path. Only Markdown files appear in the script list.</p><label for="folder-input">Folder path</label><input id="folder-input" required placeholder="~/Documents"><p id="folder-error" role="alert"></p><div><button type="button" id="cancel-folder">Cancel</button><button type="submit" class="primary">Open folder →</button></div></form></dialog>
+<div id="toast" role="alert" hidden></div>
+</body></html>

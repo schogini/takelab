@@ -1,0 +1,11 @@
+title = "TakeLab secret scanning"
+[extend]
+useDefault = true
+
+# An export assignment in the unchanged vendored xterm.js build, not a credential.
+[[allowlists]]
+description = "xterm.js FourKeyMap/TwoKeyMap export assignment"
+condition = "AND"
+paths = ['''web/vendor/xterm\.js$''']
+regexTarget = "match"
+regexes = ['''t\.FourKeyMap=t\.TwoKeyMap=void''']
