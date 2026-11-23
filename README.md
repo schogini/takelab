@@ -303,6 +303,12 @@ Chrome owns its sharing notification. **Sharing bar offset → Automatic** compe
 
 [Watch the original short workspace tour](https://github.com/schogini/takelab/releases/download/v0.1.0/takelab-tour.mp4) · [Latest release](https://github.com/schogini/takelab/releases/latest)
 
+## Make your own walkthrough
+
+Load [the full TakeLab narration](demo/02-takelab-tour.md) into the teleprompter for a 12–15 minute product tour. Follow the [recording and shot guide](docs/video/RECORDING_GUIDE.md) for screen cues, demo commands, expected results and suggested YouTube packaging.
+
+The [blog article source](docs/blog/takelab-recording-workspace.md) covers the same workflow in written form.
+
 ## Scope and safety
 
 - macOS/Chrome are the primary target. CI also runs backend tests on Linux; Windows and other browsers are not supported releases.
