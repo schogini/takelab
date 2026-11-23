@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>DeskLab · Sensor dashboard</title>
+  <link rel="stylesheet" href="assets/dashboard.css">
+  <script src="assets/dashboard.js" defer></script>
+</head>
+<body>
+  <div class="tag">DESKLAB / LIVE DEMO</div>
+  <h1>Small signals. Clear stories.</h1>
+  <p>Six fictional readings. One temperature alert.</p>
+
+  <div class="cards">
+    <div class="card"><small>SAMPLES</small><b>6</b></div>
+    <div class="card"><small>PEAK</small><b>31.2 °C</b></div>
+    <div class="card"><small>ALERTS</small><b class="accent">1</b></div>
+  </div>
+
+  <svg viewBox="0 0 640 220" role="img"
+       aria-label="Temperature rises from 23.4 to 31.2 degrees">
+    <path d="M35 180H605 M35 120H605 M35 60H605" stroke="#31515c"/>
+    <path d="M35 180L145 165L255 139L365 107L475 72L605 25"
+          fill="none" stroke="#7fe2c3" stroke-width="4"/>
+    <circle cx="605" cy="25" r="6" fill="#ffab7d"/>
+    <g id="limit">
+      <path d="M35 50H605" stroke="#ffab7d" stroke-dasharray="6 6"/>
+      <text x="36" y="39" fill="#ffab7d" font-size="13">30 °C threshold</text>
+    </g>
+    <text x="35" y="205" fill="#aec3cf" font-size="12">09:00</text>
+    <text x="568" y="205" fill="#aec3cf" font-size="12">09:25</text>
+  </svg>
+
+  <p><button id="toggle" aria-pressed="false">Show threshold</button></p>
+  <p class="foot">TakeLab demo. Fictional data. Works offline.</p>
+</body>
+</html>

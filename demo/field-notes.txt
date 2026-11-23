@@ -1,0 +1,28 @@
+DESKLAB / FIELD NOTES
+====================
+
+Goal
+  Explain a small sensor project in one clear take.
+
+What we know
+  Six sample readings, captured five minutes apart.
+  The final temperature is 31.2 C.
+  The default alert threshold is 30 C.
+
+Demo commands
+  python3 demo.py
+  python3 demo.py --limit 28
+  python3 demo.py --json
+
+Shot list
+  Head camera: introduce the idea.
+  Project camera: show the imaginary sensor board.
+  Top camera: show the desk or diagram.
+
+Presenter notes
+  Pause after the result.
+  Highlight the threshold on the dashboard.
+  Leave room for the viewer to think.
+
+Edit this file in TakeLab to try the editor.
+All readings are fictional demo data.
