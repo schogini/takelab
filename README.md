@@ -307,7 +307,7 @@ Chrome owns its sharing notification. **Sharing bar offset → Automatic** compe
 
 Load [the full TakeLab narration](demo/02-takelab-tour.md) into the teleprompter for a 12–15 minute product tour. Follow the [recording and shot guide](docs/video/RECORDING_GUIDE.md) for screen cues, demo commands, expected results and suggested YouTube packaging.
 
-The [blog article source](docs/blog/takelab-recording-workspace.md) covers the same workflow in written form.
+Read the [TakeLab article on Medium](https://medium.com/@schogini/takelab-a-local-recording-studio-for-technical-creators-2a634b9d2bb0) for the same workflow in written form. The [article source](docs/blog/takelab-recording-workspace.md) is included in this repository.
 
 ## Scope and safety
 

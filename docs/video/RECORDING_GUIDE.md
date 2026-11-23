@@ -58,6 +58,7 @@ In this walkthrough I use the included sensor-project demo to show the complete 
 Try TakeLab: https://github.com/schogini/takelab
 Visual setup guide: https://github.com/schogini/takelab#readme
 Demo files: https://github.com/schogini/takelab/tree/main/demo
+Blog walkthrough: https://medium.com/@schogini/takelab-a-local-recording-studio-for-technical-creators-2a634b9d2bb0
 
 Core requirements: macOS, Python 3.10+ and desktop Chrome.
 Optional: FFmpeg for constant-frame-rate Camtasia exports.

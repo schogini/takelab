@@ -1,5 +1,7 @@
 # TakeLab: A Local Recording Studio for Technical Creators
 
+*Published on [Medium](https://medium.com/@schogini/takelab-a-local-recording-studio-for-technical-creators-2a634b9d2bb0).*
+
 A technical recording often starts with a simple intention: explain a project clearly. Then the preparation grows. There is a script to read, a terminal to arrange, a browser page to demonstrate, and a camera view to position. Each piece needs to be ready when the explanation reaches it.
 
 We built TakeLab around that workflow. It is a local recording workspace that brings a teleprompter, file previews, browser tabs, real terminals and up to three camera views into one browser window.
